@@ -1,191 +1,763 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intel: Sustainability Through the Ages</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="استكشف رحلة إنتل عبر الزمن في مجال الاستدامة والابتكار التكنولوجي" />
+  <title>إنتل: الاستدامة عبر العصور</title>
+  
+  <!-- Bootstrap RTL CSS -->
+  <link id="bootstrap-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <style>
+    :root {
+      --intel-blue: #0068B5;
+      --intel-light-blue: #00AEEF;
+      --intel-dark: #1F1F1F;
+      --intel-gray: #F3F3F3;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--intel-dark);
+    }
+    
+    /* Fixed Bottom Right Toggle */
+    .lang-toggle-fixed {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 9999;
+      background: var(--intel-blue);
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    [dir="ltr"] .lang-toggle-fixed {
+      right: auto;
+      left: 30px;
+    }
+    
+    .lang-toggle-fixed:hover {
+      background: var(--intel-light-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    }
+    
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: var(--intel-blue);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      z-index: 1000;
+    }
+    
+    [dir="ltr"] .skip-link {
+      right: auto;
+      left: 0;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--intel-blue) 0%, var(--intel-light-blue) 100%);
+      color: white;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+    }
+    
+    header img {
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 1.5rem;
+      filter: brightness(0) invert(1);
+    }
+    
+    .timeline-card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      height: 100%;
+      background: white;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .timeline-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .timeline-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .timeline-year {
+      color: var(--intel-blue);
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    .feature-card {
+      padding: 2rem;
+      border-radius: 12px;
+      background: var(--intel-gray);
+      height: 100%;
+    }
+    
+    .btn-intel {
+      background-color: var(--intel-blue);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      border: 2px solid var(--intel-blue);
+    }
+    
+    .btn-intel:hover {
+      background-color: white;
+      color: var(--intel-blue);
+    }
+    
+    .newsletter-section {
+      background: var(--intel-dark);
+      color: white;
+      padding: 4rem 0;
+      margin-top: 4rem;
+    }
+    
+    .faq-section {
+      background: var(--intel-gray);
+      padding: 4rem 0;
+      margin-top: 4rem;
+    }
+    
+    .accordion-button:not(.collapsed) {
+      background-color: var(--intel-blue);
+      color: white;
+    }
+    
+    footer {
+      background: #000;
+      color: white;
+      padding: 3rem 0 1.5rem;
+    }
+    
+    footer a {
+      color: #aaa;
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    *:focus-visible {
+      outline: 3px solid #ffdd00;
+      outline-offset: 2px;
+    }
+    
+    /* RTL/LTR Adjustments */
+    [dir="ltr"] .me-2 {
+      margin-right: 0 !important;
+      margin-left: 0.5rem !important;
+    }
+    
+    [dir="rtl"] .ms-2 {
+      margin-left: 0 !important;
+      margin-right: 0.5rem !important;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header / Hero Section -->
-  <header>
-    <div>
-      <img src="img/intel-header-logo.svg" alt="Intel Logo" />
-      <!-- Main Heading -->
-      <h1>
-        Sustainability Through the Ages
-      </h1>
+  <!-- Fixed Language Toggle Button (Bottom Right) -->
+  <button class="lang-toggle-fixed" onclick="toggleLanguage()" aria-label="تبديل اللغة">
+    <i class="bi bi-globe"></i>
+    <span id="lang-label">English</span>
+  </button>
 
-      <!-- Subheading / Description -->
-      <p>
-        Explore Intel's journey through time, discovering how our commitment
-        to innovation has shaped a more sustainable future for technology 
-        and our planet.
+  <a href="#main-content" class="skip-link">التخطي إلى المحتوى الرئيسي</a>
+
+  <!-- Header -->
+  <header role="banner">
+    <div class="container text-center">
+      <img src="img/intel-header-logo.svg" alt="شعار إنتل" />
+      <h1 class="display-4 mb-3" data-ar="الاستدامة عبر العصور" data-en="Sustainability Through the Ages">الاستدامة عبر العصور</h1>
+      <p class="lead mx-auto" style="max-width: 600px;" data-ar="استكشف رحلة إنتل عبر الزمن، واكتشف كيف شكّل التزامنا بالابتكار مستقبلاً أكثر استدامةً للتكنولوجيا ولكوكبنا." data-en="Explore Intel's journey through time, discovering how our commitment to innovation has shaped a more sustainable future for technology and our planet.">
+        استكشف رحلة إنتل عبر الزمن، واكتشف كيف شكّل التزامنا بالابتكار مستقبلاً أكثر استدامةً للتكنولوجيا ولكوكبنا.
       </p>
     </div>
   </header>
 
-  <!-- Timeline Cards Section -->
-  <section>
-    <!-- Card 1: 1968 -->
-    <div>
-      <h2>1968</h2>
-      <h3>Intel Founded</h3>
-      <img src="img/1.jpg" alt="Placeholder Image" />
-      <p>
-        Robert Noyce and Gordon Moore rename the newly formed company 
-        NM Electronics to Intel Corporation, laying the foundation for 
-        decades of technological innovation.
-      </p>
-    </div>
-
-    <!-- Card 2: 1971 -->
-    <div>
-      <h2>1971</h2>
-      <h3>First Microprocessor</h3>
-      <img src="img/2.jpg" alt="Placeholder Image" />
-      <p>
-        Intel debuts the 4004, the world's first commercial microprocessor, 
-        igniting the microprocessor revolution and propelling the future 
-        of computing devices.
-      </p>
-    </div>
-
-    <!-- Card 3: 1978 -->
-    <div>
-      <h2>1978</h2>
-      <h3>8086 Processor</h3>
-      <img src="img/3.jpg" alt="Placeholder Image" />
-      <p>
-        Launch of the 8086 processor, establishing the x86 architecture 
-        that drives countless PCs and servers in the modern era.
-      </p>
-    </div>
-
-    <!-- Card 4: 1985 -->
-    <div>
-      <h2>1985</h2>
-      <h3>386 Processor</h3>
-      <img src="img/4.jpg" alt="Placeholder Image" />
-      <p>
-        Intel introduces the 386 processor with 32-bit architecture, 
-        ushering in a new era of performance and multitasking for 
-        personal computers.
-      </p>
-    </div>
-
-    <!-- Card 5: 2006 -->
-    <div>
-      <h2>2006</h2>
-      <h3>Peak GHG Emissions</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
-      <p>
-        This year marks Intel's highest annual greenhouse gas emissions 
-        for operations. Over subsequent years, Intel invests heavily in 
-        chemical abatement, renewable energy, and energy-efficient 
-        manufacturing to reverse this trend.
-      </p>
-    </div>
-
-    <!-- Card 6: 2020 -->
-    <div>
-      <h2>2020</h2>
-      <h3>RISE Strategy</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
-      <p>
-        Intel launches its RISE (Responsible, Inclusive, Sustainable, 
-        Enabling) strategy and 2030 goals, aiming to drive industry-wide 
-        progress on climate action, water stewardship, and waste reduction.
-      </p>
-    </div>
-
-    <!-- Card 7: 2022 -->
-    <div>
-      <h2>2022</h2>
-      <h3>Net-Zero By 2040</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
-      <p>
-        Intel announces its commitment to achieve net-zero greenhouse 
-        gas emissions (Scope 1 and 2) across its global operations 
-        by 2040, building on years of environmental initiatives.
-      </p>
-    </div>
-
-    <!-- Card 8: 2023 -->
-    <div>
-      <h2>2023</h2>
-      <h3>Renewable Electricity</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
-      <p>
-        The company achieves 99% renewable electricity usage worldwide, 
-        helping to drastically lower carbon emissions and driving progress 
-        toward Intel's long-term sustainability goals.
-      </p>
-    </div>
-
-    <!-- Card 9: 2024 -->
-    <div>
-      <h2>2024</h2>
-      <h3>Sustainability Summit</h3>
-      <img src="https://placehold.co/250x100" alt="Placeholder Image" />
-      <p>
-        Intel hosts its first Sustainability Summit, uniting suppliers, 
-        government officials, and industry leaders to collaborate on 
-        next-generation sustainable semiconductor manufacturing.
-      </p>
-    </div>
-  </section>
-
-  <!-- 3-Column Content Section -->
-  <section>
-    <div>
+  <main id="main-content">
+    <!-- Timeline Section -->
+    <section class="container mb-5" aria-labelledby="timeline-heading">
+      <h2 id="timeline-heading" class="text-center mb-5" data-ar="الخط الزمني للاستدامة" data-en="Sustainability Timeline">الخط الزمني للاستدامة</h2>
       
-      <!-- Column 1 -->
-      <div>
-        <h2>RISE Strategy</h2>
-        <p>
-          Under its RISE (Responsible, Inclusive, Sustainable, Enabling) strategy, 
-          Intel sets ambitious 2030 goals, including driving industry-wide 
-          progress on climate action, water stewardship, and waste reduction.
-        </p>
-        <!-- Learn More Button -->
-        <a href="#">Learn More</a>
-      </div>
+      <div class="row g-4">
+        <!-- Card 1: 1968 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal" 
+                   data-year="1968" 
+                   data-ar-title="تأسيس إنتل" 
+                   data-en-title="Intel Founded"
+                   data-ar-details="قام روبرت نويس وغوردون مور بتأسيس شركة إنتل في 18 يوليو 1968، مما marked بداية ثورة أشباه الموصلات."
+                   data-en-details="Robert Noyce and Gordon Moore founded Intel Corporation on July 18, 1968, marking the beginning of the semiconductor revolution.">
+            <img src="img/1.jpg" alt="مؤسسو إنتل 1968" loading="lazy" />
+            <div class="p-4">
+              <time datetime="1968" class="timeline-year">1968</time>
+              <h3 class="h4 mb-3 card-title" data-ar="تأسيس إنتل" data-en="Intel Founded">تأسيس إنتل</h3>
+              <p class="card-text" data-ar="قام روبرت نويس وغوردون مور بإعادة تسمية الشركة الناشئة إلى شركة إنتل، مما أسس لعقود من الابتكار التكنولوجي." data-en="Robert Noyce and Gordon Moore renamed the newly formed company to Intel Corporation, laying the foundation for decades of technological innovation.">
+                قام روبرت نويس وغوردون مور بإعادة تسمية الشركة الناشئة إلى شركة إنتل، مما أسس لعقود من الابتكار التكنولوجي.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
 
-      <!-- Column 2 -->
-      <div>
-        <h2>Commitment</h2>
-        <p>
-          In 2022, Intel pledged to achieve net-zero greenhouse gas emissions 
-          (Scope 1 and 2) by 2040. This commitment builds on decades of 
-          environmental initiatives and partnerships across the semiconductor 
-          industry.
-        </p>
-        <!-- Learn More Button -->
-        <a href="#">Learn More</a>
-      </div>
+        <!-- Card 2: 1971 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal"
+                   data-year="1971"
+                   data-ar-title="أول معالج دقيق"
+                   data-en-title="First Microprocessor"
+                   data-ar-details="كان معالج إنتل 4004 أول معالج دقيق تجاري في العالم مع 2,300 ترانزستور."
+                   data-en-details="The Intel 4004 was the world's first commercially available microprocessor with 2,300 transistors.">
+            <img src="img/2.jpg" alt="معالج 4004" loading="lazy" />
+            <div class="p-4">
+              <time datetime="1971" class="timeline-year">1971</time>
+              <h3 class="h4 mb-3 card-title" data-ar="أول معالج دقيق" data-en="First Microprocessor">أول معالج دقيق</h3>
+              <p class="card-text" data-ar="تطلق إنتل المعالج 4004، أول معالج دقيق تجاري في العالم، مما أشعل ثورة المعالجات الدقيقة." data-en="Intel debuts the 4004, the world's first commercial microprocessor, igniting the microprocessor revolution.">
+                تطلق إنتل المعالج 4004، أول معالج دقيق تجاري في العالم، مما أشعل ثورة المعالجات الدقيقة.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
 
-      <!-- Column 3 -->
-      <div>
-        <h2>Water &amp; Waste</h2>
-        <p>
-          Intel conserves billions of gallons of water annually and 
-          collaborates with local communities to restore watersheds.
-          Intel also upcycles and recycles materials to reduce waste and 
-          advance a circular economy.
-        </p>
-        <!-- Learn More Button -->
-        <a href="#">Learn More</a>
-      </div>
+        <!-- Card 3: 1978 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal"
+                   data-year="1978"
+                   data-ar-title="معالج 8086"
+                   data-en-title="8086 Processor"
+                   data-ar-details="أسس معالج 8086 هندسة x86 التي أصبحت معياراً للحوسبة الشخصية."
+                   data-en-details="The 8086 established the x86 architecture that became the standard for personal computing.">
+            <img src="img/3.jpg" alt="معالج 8086" loading="lazy" />
+            <div class="p-4">
+              <time datetime="1978" class="timeline-year">1978</time>
+              <h3 class="h4 mb-3 card-title" data-ar="معالج 8086" data-en="8086 Processor">معالج 8086</h3>
+              <p class="card-text" data-ar="إطلاق معالج 8086، الذي أسس لهندسة x86 التي تشغل أجهزة الكمبيوتر الحديثة." data-en="Launch of the 8086 processor, establishing the x86 architecture that drives modern PCs.">
+                إطلاق معالج 8086، الذي أسس لهندسة x86 التي تشغل أجهزة الكمبيوتر الحديثة.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
 
+        <!-- Card 4: 1985 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal"
+                   data-year="1985"
+                   data-ar-title="معالج 386"
+                   data-en-title="386 Processor"
+                   data-ar-details="قدم معالج إنتل 386 هندسة 32 بت، مما مكن من تعدد المهام وأداء محسن."
+                   data-en-details="The Intel 386 introduced 32-bit architecture, enabling multitasking and improved performance.">
+            <img src="img/4.jpg" alt="معالج 386" loading="lazy" />
+            <div class="p-4">
+              <time datetime="1985" class="timeline-year">1985</time>
+              <h3 class="h4 mb-3 card-title" data-ar="معالج 386" data-en="386 Processor">معالج 386</h3>
+              <p class="card-text" data-ar="تقدم إنتل معالج 386 بهندسة 32 بت، مما أدخل عصراً جديداً من الأداء وتعدد المهام." data-en="Intel introduces the 386 processor with 32-bit architecture, ushering in a new era of performance.">
+                تقدم إنتل معالج 386 بهندسة 32 بت، مما أدخل عصراً جديداً من الأداء وتعدد المهام.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 5: 2006 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal"
+                   data-year="2006"
+                   data-ar-title="ذروة انبعاثات الغازات"
+                   data-en-title="Peak GHG Emissions"
+                   data-ar-details="سجلت 2006 أعلى مستوى انبعاثات لإنتل، مما دفع إلى تغييرات استراتيجية شاملة."
+                   data-en-details="2006 marked Intel's highest emissions, prompting comprehensive environmental strategy changes.">
+            <img src="https://placehold.co/600x400/0068B5/FFFFFF?text=2006" alt="رسم بياني للانبعاثات" loading="lazy" />
+            <div class="p-4">
+              <time datetime="2006" class="timeline-year">2006</time>
+              <h3 class="h4 mb-3 card-title" data-ar="ذروة انبعاثات الغازات" data-en="Peak GHG Emissions">ذروة انبعاثات الغازات</h3>
+              <p class="card-text" data-ar="تسجل هذه السنة أعلى مستوى انبعاثات، مما دفع إنتل للاستثمار في الطاقة المتجددة." data-en="This year marks Intel's highest annual greenhouse gas emissions, prompting investment in renewable energy.">
+                تسجل هذه السنة أعلى مستوى انبعاثات، مما دفع إنتل للاستثمار في الطاقة المتجددة.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 6: 2020 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal"
+                   data-year="2020"
+                   data-ar-title="استراتيجية RISE"
+                   data-en-title="RISE Strategy"
+                   data-ar-details="أطلقت إنتل استراتيجية RISE بأهداف طموحة لعام 2030 للاستدامة والمسؤولية."
+                   data-en-details="Intel launched RISE strategy with ambitious 2030 goals for sustainability and responsibility.">
+            <img src="https://placehold.co/600x400/00AEEF/FFFFFF?text=RISE" alt="استراتيجية RISE" loading="lazy" />
+            <div class="p-4">
+              <time datetime="2020" class="timeline-year">2020</time>
+              <h3 class="h4 mb-3 card-title" data-ar="استراتيجية RISE" data-en="RISE Strategy">استراتيجية RISE</h3>
+              <p class="card-text" data-ar="تطلق إنتل استراتيجية RISE لعام 2030 للعمل المناخي وإدارة المياه والحد من النفايات." data-en="Intel launches RISE strategy and 2030 goals for climate action, water stewardship, and waste reduction.">
+                تطلق إنتل استراتيجية RISE لعام 2030 للعمل المناخي وإدارة المياه والحد من النفايات.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 7: 2022 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal"
+                   data-year="2022"
+                   data-ar-title="الحياد الكربني 2040"
+                   data-en-title="Net-Zero By 2040"
+                   data-ar-details="التزمت إنتل بتحقيق انبعاثات صفرية صافية بحلول 2040 في جميع العمليات العالمية."
+                   data-en-details="Intel committed to net-zero greenhouse gas emissions by 2040 across global operations.">
+            <img src="https://placehold.co/600x400/004C85/FFFFFF?text=Net-Zero" alt="الحياد الكربني" loading="lazy" />
+            <div class="p-4">
+              <time datetime="2022" class="timeline-year">2022</time>
+              <h3 class="h4 mb-3 card-title" data-ar="الحياد الكربني 2040" data-en="Net-Zero By 2040">الحياد الكربني 2040</h3>
+              <p class="card-text" data-ar="تعلن إنتل عن التزامها بتحقيق انبعاثات صفرية صافية في جميع عملياتها العالمية بحلول 2040." data-en="Intel announces commitment to achieve net-zero greenhouse gas emissions across global operations by 2040.">
+                تعلن إنتل عن التزامها بتحقيق انبعاثات صفرية صافية في جميع عملياتها العالمية بحلول 2040.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 8: 2023 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal"
+                   data-year="2023"
+                   data-ar-title="99% طاقة متجددة"
+                   data-en-title="99% Renewable Electricity"
+                   data-ar-details="حققت إنتل 99% استخدام كهرباء متجددة عبر اتفاقيات الشراء والتوليد المحلي."
+                   data-en-details="Intel achieved 99% renewable electricity usage worldwide through PPAs and on-site generation.">
+            <img src="https://placehold.co/600x400/00C7FD/FFFFFF?text=Renewable" alt="طاقة متجددة" loading="lazy" />
+            <div class="p-4">
+              <time datetime="2023" class="timeline-year">2023</time>
+              <h3 class="h4 mb-3 card-title" data-ar="99% طاقة متجددة" data-en="99% Renewable Electricity">99% طاقة متجددة</h3>
+              <p class="card-text" data-ar="تحقق الشركة استخداماً بنسبة 99% للكهرباء المتجددة على مستوى العالم، مما يخفض الانبعاثات بشكل كبير." data-en="The company achieves 99% renewable electricity usage worldwide, drastically lowering carbon emissions.">
+                تحقق الشركة استخداماً بنسبة 99% للكهرباء المتجددة على مستوى العالم، مما يخفض الانبعاثات بشكل كبير.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Card 9: 2024 -->
+        <div class="col-md-6 col-lg-4">
+          <article class="timeline-card" data-bs-toggle="modal" data-bs-target="#timelineModal"
+                   data-year="2024"
+                   data-ar-title="قمة الاستدامة"
+                   data-en-title="Sustainability Summit"
+                   data-ar-details="استضافت إنتل أول قمة للاستدامة جمعت قادة الصناعة والموردين."
+                   data-en-details="Intel hosted its first Sustainability Summit uniting industry leaders and suppliers.">
+            <img src="https://placehold.co/600x400/0068B5/FFFFFF?text=Summit" alt="قمة الاستدامة" loading="lazy" />
+            <div class="p-4">
+              <time datetime="2024" class="timeline-year">2024</time>
+              <h3 class="h4 mb-3 card-title" data-ar="قمة الاستدامة" data-en="Sustainability Summit">قمة الاستدامة</h3>
+              <p class="card-text" data-ar="تستضيف إنتل أول قمة للاستدامة، تجمع الموردين والقادة للتعاون في التصنيع المستدام." data-en="Intel hosts its first Sustainability Summit, uniting suppliers and leaders for sustainable manufacturing.">
+                تستضيف إنتل أول قمة للاستدامة، تجمع الموردين والقادة للتعاون في التصنيع المستدام.
+              </p>
+              <span class="text-primary small"><span class="click-text" data-ar="اضغط للمزيد" data-en="Click to learn more">اضغط للمزيد</span> <i class="bi bi-arrow-left"></i></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3-Column Section -->
+    <section class="container mb-5" aria-labelledby="features-heading">
+      <h2 id="features-heading" class="visually-hidden">المبادرات الرئيسية</h2>
+      
+      <div class="row g-4">
+        <div class="col-md-4">
+          <article class="feature-card">
+            <h3 class="h4 mb-3"><i class="bi bi-graph-up-arrow me-2 text-primary"></i><span data-ar="استراتيجية RISE" data-en="RISE Strategy">استراتيجية RISE</span></h3>
+            <p data-ar="بموجب استراتيجية RISE، تضع إنتل أهدافاً طموحة لعام 2030 للعمل المناخي وإدارة المياه والحد من النفايات." data-en="Under its RISE strategy, Intel sets ambitious 2030 goals for climate action, water stewardship, and waste reduction.">
+              بموجب استراتيجية RISE، تضع إنتل أهدافاً طموحة لعام 2030 للعمل المناخي وإدارة المياه والحد من النفايات.
+            </p>
+            <a href="#" class="btn-intel"><span data-ar="معرفة المزيد" data-en="Learn More">معرفة المزيد</span></a>
+          </article>
+        </div>
+
+        <div class="col-md-4">
+          <article class="feature-card">
+            <h3 class="h4 mb-3"><i class="bi bi-check-circle-fill me-2 text-primary"></i><span data-ar="الالتزام" data-en="Commitment">الالتزام</span></h3>
+            <p data-ar="في عام 2022، تعهدت إنتل بتحقيق انبعاثات صفرية صافية بحلول 2040 في جميع عملياتها." data-en="In 2022, Intel pledged to achieve net-zero greenhouse gas emissions by 2040 across all operations.">
+              في عام 2022، تعهدت إنتل بتحقيق انبعاثات صفرية صافية بحلول 2040 في جميع عملياتها.
+            </p>
+            <a href="#" class="btn-intel"><span data-ar="معرفة المزيد" data-en="Learn More">معرفة المزيد</span></a>
+          </article>
+        </div>
+
+        <div class="col-md-4">
+          <article class="feature-card">
+            <h3 class="h4 mb-3"><i class="bi bi-droplet-fill me-2 text-primary"></i><span data-ar="المياه والنفايات" data-en="Water & Waste">المياه والنفايات</span></h3>
+            <p data-ar="تحافظ إنتل على مليارات الغالونات من المياه سنوياً وتدفع الاقتصاد الدائري من خلال إعادة التدوير." data-en="Intel conserves billions of gallons of water annually and advances circular economy through recycling.">
+              تحافظ إنتل على مليارات الغالونات من المياه سنوياً وتدفع الاقتصاد الدائري من خلال إعادة التدوير.
+            </p>
+            <a href="#" class="btn-intel"><span data-ar="معرفة المزيد" data-en="Learn More">معرفة المزيد</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading" class="text-center mb-5" data-ar="الأسئلة الشائعة" data-en="Frequently Asked Questions">الأسئلة الشائعة</h2>
+        
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion" id="sustainabilityFAQ">
+              <div class="accordion-item mb-3 border-0 shadow-sm">
+                <h3 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+                    <span data-ar="ما هي استراتيجية RISE؟" data-en="What is Intel's RISE strategy?">ما هي استراتيجية RISE؟</span>
+                  </button>
+                </h3>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#sustainabilityFAQ">
+                  <div class="accordion-body" data-ar="RISE تعني المسؤولة، الشاملة، المستدامة، والممكنة. إنها استراتيجية إنتل لتحقيق أهداف طموحة لعام 2030 تشمل 100% طاقة متجددة والحياد المائي الإيجابي." data-en="RISE stands for Responsible, Inclusive, Sustainable, and Enabling. It's Intel's strategy setting ambitious 2030 goals including 100% renewable electricity and net positive water use.">
+                    RISE تعني المسؤولة، الشاملة، المستدامة، والممكنة. إنها استراتيجية إنتل لتحقيق أهداف طموحة لعام 2030 تشمل 100% طاقة متجددة والحياد المائي الإيجابي.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item mb-3 border-0 shadow-sm">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                    <span data-ar="كيف تحقق إنتل 99% طاقة متجددة؟" data-en="How does Intel achieve 99% renewable electricity?">كيف تحقق إنتل 99% طاقة متجددة؟</span>
+                  </button>
+                </h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#sustainabilityFAQ">
+                  <div class="accordion-body" data-ar="من خلال التثبيتات الشمسية على الموقع، واتفاقيات شراء الطاقة طويلة الأجل، وشهادات الطاقة المتجددة حيث لا يكون الشراء المباشر ممكناً." data-en="Through on-site solar installations, long-term Power Purchase Agreements (PPAs), and renewable energy certificates where direct procurement isn't possible.">
+                    من خلال التثبيتات الشمسية على الموقع، واتفاقيات شراء الطاقة طويلة الأجل، وشهادات الطاقة المتجددة حيث لا يكون الشراء المباشر ممكناً.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item mb-3 border-0 shadow-sm">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                    <span data-ar="ماذا يعني الحياد الكربني بحلول 2040؟" data-en="What does net-zero by 2040 mean?">ماذا يعني الحياد الكربني بحلول 2040؟</span>
+                  </button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#sustainabilityFAQ">
+                  <div class="accordion-body" data-ar="تهدف إنتل إلى إلغاء أو تعويض جميع انبعاثات غازات الدفيئة من النطاق 1 و 2 بحلول 2040 من خلال كفاءة الطاقة والطاقة المتجددة." data-en="Intel aims to eliminate or offset all Scope 1 and 2 greenhouse gas emissions by 2040 through energy efficiency and renewable energy.">
+                    تهدف إنتل إلى إلغاء أو تعويض جميع انبعاثات غازات الدفيئة من النطاق 1 و 2 بحلول 2040 من خلال كفاءة الطاقة والطاقة المتجددة.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item mb-3 border-0 shadow-sm">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                    <span data-ar="كيف تحافظ إنتل على المياه؟" data-en="How does Intel conserve water?">كيف تحافظ إنتل على المياه؟</span>
+                  </button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#sustainabilityFAQ">
+                  <div class="accordion-body" data-ar="تحافظ إنتل على أكثر من 10 مليارات غالون سنوياً من خلال أنظمة المعالجة المتقدمة وتمويل مشاريع استعادة أحواض المياه." data-en="Intel conserves over 10 billion gallons annually through advanced treatment systems and funding watershed restoration projects.">
+                    تحافظ إنتل على أكثر من 10 مليارات غالون سنوياً من خلال أنظمة المعالجة المتقدمة وتمويل مشاريع استعادة أحواض المياه.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item border-0 shadow-sm">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                    <span data-ar="ما هي تحالف أشباه الموصلات المناخي؟" data-en="What is the Semiconductor Climate Consortium?">ما هي تحالف أشباه الموصلات المناخي؟</span>
+                  </button>
+                </h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#sustainabilityFAQ">
+                  <div class="accordion-body" data-ar="مجموعة صناعية أسستها إنتل لتقليل الانبعاثات عبر سلسلة قيمة أشباه الموصلات من خلال المعايير المشترسة وأفضل الممارسات." data-en="An industry group founded by Intel to reduce emissions across the semiconductor value chain through common standards and best practices.">
+                    مجموعة صناعية أسستها إنتل لتقليل الانبعاثات عبر سلسلة قيمة أشباه الموصلات من خلال المعايير المشتركة وأفضل الممارسات.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Form -->
+    <section class="newsletter-section" aria-labelledby="newsletter-heading">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6 text-center">
+            <h2 id="newsletter-heading" class="mb-4" data-ar="اشترك في نشرتنا الإخبارية" data-en="Subscribe to our Newsletter">اشترك في نشرتنا الإخبارية</h2>
+            <p class="mb-4" data-ar="احصل على أحدث التحديثات حول مبادرات الاستدامة في إنتل" data-en="Get the latest updates on Intel's sustainability initiatives">احصل على أحدث التحديثات حول مبادرات الاستدامة في إنتل</p>
+            
+            <form action="#" method="POST" class="needs-validation" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label visually-hidden" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
+                  <input type="text" class="form-control" id="firstName" placeholder="الاسم الأول" required>
+                  <div class="invalid-feedback" data-ar="الرجاء إدخال الاسم الأول" data-en="Please enter your first name">الرجاء إدخال الاسم الأول</div>
+                </div>
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label visually-hidden" data-ar="اسم العائلة" data-en="Last Name">اسم العائلة</label>
+                  <input type="text" class="form-control" id="lastName" placeholder="اسم العائلة" required>
+                  <div class="invalid-feedback" data-ar="الرجاء إدخال اسم العائلة" data-en="Please enter your last name">الرجاء إدخال اسم العائلة</div>
+                </div>
+                <div class="col-12">
+                  <label for="email" class="form-label visually-hidden" data-ar="البريد الإلكتروني" data-en="Email Address">البريد الإلكتروني</label>
+                  <input type="email" class="form-control" id="email" placeholder="البريد الإلكتروني" required>
+                  <div class="invalid-feedback" data-ar="الرجاء إدخال بريد إلكتروني صحيح" data-en="Please enter a valid email address">الرجاء إدخال بريد إلكتروني صحيح</div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check d-flex justify-content-center gap-2">
+                    <input class="form-check-input" type="checkbox" id="privacyConsent" required>
+                    <label class="form-check-label" for="privacyConsent">
+                      <span data-ar="أوافق على" data-en="I agree to the">أوافق على</span> <a href="#" class="text-info" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-light btn-lg px-5 mt-3" data-ar="اشتراك" data-en="Subscribe">اشتراك</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Timeline Detail Modal -->
+  <div class="modal fade" id="timelineModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <h3 class="modal-title fw-bold" id="timelineModalLabel" data-ar="تفاصيل الحدث" data-en="Event Details">تفاصيل الحدث</h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4 text-center mb-3 mb-md-0">
+              <div class="display-1 text-primary fw-bold" id="modalYear">1968</div>
+              <div class="h4 text-muted" id="modalTitle" data-ar="تأسيس إنتل" data-en="Intel Founded">تأسيس إنتل</div>
+            </div>
+            <div class="col-md-8">
+              <p class="lead" id="modalDetails" data-ar="جارِ التحميل..." data-en="Loading...">جارِ التحميل...</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-ar="إغلاق" data-en="Close">إغلاق</button>
+          <button type="button" class="btn btn-primary" style="background-color: var(--intel-blue);" data-ar="معرفة المزيد" data-en="Learn More">معرفة المزيد</button>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Subscription Form -->
-  <section>
-    <h2>Subscribe to our Newsletter</h2>
-    <!-- Add form here -->
-  </section>
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h3 class="h5 mb-3" data-ar="شركة إنتل" data-en="Intel Corporation">شركة إنتل</h3>
+          <address>
+            <p>2200 Mission College Blvd.<br>Santa Clara, CA 95054-1549<br>USA</p>
+            <p data-ar="الهاتف:" data-en="Phone:">الهاتف: <a href="tel:+1-408-765-8080">+1 (408) 765-8080</a></p>
+          </address>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <h3 class="h5 mb-3" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
+          <nav aria-label="تنقل التذييل">
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+              <li class="mb-2"><a href="#" data-ar="عن إنتل" data-en="About Intel">عن إنتل</a></li>
+              <li class="mb-2"><a href="#" data-ar="الاستدامة" data-en="Sustainability">الاستدامة</a></li>
+              <li class="mb-2"><a href="#" data-ar="الوظائف" data-en="Careers">الوظائف</a></li>
+              <li class="mb-2"><a href="#" data-ar="الدعم" data-en="Support">الدعم</a></li>
+            </ul>
+          </nav>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+          <h3 class="h5 mb-3" data-ar="قانوني" data-en="Legal">قانوني</h3>
+          <nav aria-label="روابط قانونية">
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a></li>
+              <li class="mb-2"><a href="#" data-ar="شروط الاستخدام" data-en="Terms of Use">شروط الاستخدام</a></li>
+              <li class="mb-2"><a href="#" data-ar="إمكانية الوصول" data-en="Accessibility">إمكانية الوصول</a></li>
+              <li class="mb-2"><a href="#" data-ar="خريطة الموقع" data-en="Sitemap">خريطة الموقع</a></li>
+            </ul>
+          </nav>
+          
+          <div class="mt-4">
+            <h4 class="h6 mb-2" data-ar="تابعنا" data-en="Follow Us">تابعنا</h4>
+            <div class="d-flex gap-3">
+              <a href="#" aria-label="تويتر"><i class="bi bi-twitter-x fs-5"></i></a>
+              <a href="#" aria-label="لينكدإن"><i class="bi bi-linkedin fs-5"></i></a>
+              <a href="#" aria-label="فيسبوك"><i class="bi bi-facebook fs-5"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <hr class="my-4" style="border-color: #333;">
+      
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          <p class="mb-0" data-ar="© 2024 شركة إنتل. جميع الحقوق محفوظة." data-en="© 2024 Intel Corporation. All rights reserved.">© 2024 شركة إنتل. جميع الحقوق محفوظة.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <p class="mb-0 small">
+            <span data-ar="آخر تحديث:" data-en="Last updated:">آخر تحديث:</span> <time datetime="2024-01-15">15 يناير 2024</time>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Language and Direction Toggle
+    let currentLang = 'ar';
+    
+    function toggleLanguage() {
+      const html = document.documentElement;
+      const bootstrapLink = document.getElementById('bootstrap-css');
+      const label = document.getElementById('lang-label');
+      
+      if (currentLang === 'ar') {
+        // Switch to English
+        currentLang = 'en';
+        html.setAttribute('dir', 'ltr');
+        html.setAttribute('lang', 'en');
+        bootstrapLink.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css';
+        label.textContent = 'العربية';
+        
+        // Update all translatable elements
+        document.querySelectorAll('[data-en]').forEach(el => {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = el.getAttribute('data-en');
+          } else {
+            el.textContent = el.getAttribute('data-en');
+          }
+        });
+        
+        // Update modal content if open
+        updateModalContent();
+        
+      } else {
+        // Switch to Arabic
+        currentLang = 'ar';
+        html.setAttribute('dir', 'rtl');
+        html.setAttribute('lang', 'ar');
+        bootstrapLink.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css';
+        label.textContent = 'English';
+        
+        // Update all translatable elements
+        document.querySelectorAll('[data-ar]').forEach(el => {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = el.getAttribute('data-ar');
+          } else {
+            el.textContent = el.getAttribute('data-ar');
+          }
+        });
+        
+        // Update modal content if open
+        updateModalContent();
+      }
+      
+      // Save preference
+      localStorage.setItem('preferredLang', currentLang);
+    }
+    
+    function updateModalContent() {
+      const modal = document.getElementById('timelineModal');
+      if (modal.classList.contains('show')) {
+        // If modal is open, refresh its content based on current language
+        const activeButton = document.querySelector('.timeline-card[data-bs-toggle="modal"]:focus') || 
+                            document.querySelector('.timeline-card:active');
+        if (activeButton) {
+          const event = { relatedTarget: activeButton };
+          populateModal(event);
+        }
+      }
+    }
+    
+    function populateModal(event) {
+      const button = event.relatedTarget;
+      const year = button.getAttribute('data-year');
+      const title = button.getAttribute(currentLang === 'ar' ? 'data-ar-title' : 'data-en-title');
+      const details = button.getAttribute(currentLang === 'ar' ? 'data-ar-details' : 'data-en-details');
+      
+      document.getElementById('modalYear').textContent = year;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDetails').textContent = details;
+      
+      // Update modal static text
+      document.getElementById('timelineModalLabel').textContent = currentLang === 'ar' ? 'تفاصيل الحدث' : 'Event Details';
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check for saved preference
+      const savedLang = localStorage.getItem('preferredLang');
+      if (savedLang === 'en') {
+        toggleLanguage();
+      }
+      
+      // Form validation
+      var forms = document.querySelectorAll('.needs-validation');
+      Array.prototype.slice.call(forms).forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+      
+      // Modal population
+      const timelineModal = document.getElementById('timelineModal');
+      if (timelineModal) {
+        timelineModal.addEventListener('show.bs.modal', populateModal);
+      }
+    });
+  </script>
 </body>
 </html>
